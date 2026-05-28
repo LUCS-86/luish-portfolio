@@ -1,143 +1,123 @@
-/* ============================================
-   Luish portfolio — interactions
-   ============================================ */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Luish — Cybersecurity Enthusiast</title>
+<meta name="description" content="Portfolio of Luish — cybersecurity, pentesting, and CTF write-ups." />
+<link rel="icon" href="/assets/images/profile.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
 
-const ICONS = [
-  'burpsuite','hashcat','kali','nmap','tryhackme',
-  'hackthebox','hydra','metasploit','sqlmap','wireshark'
-];
+<!-- Animated gradient background -->
+<div class="bg-gradient"></div>
 
-/* ---------- Year ---------- */
-document.getElementById('year').textContent = new Date().getFullYear();
+<!-- Floating icons container -->
+<div class="floating-icons" id="floatingIcons" aria-hidden="true"></div>
 
-/* ---------- Floating icons generator ---------- */
-const floatLayer = document.getElementById('floatingIcons');
-const iconNodes = [];
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <a href="#hero" class="logo">luish<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#hero" class="nav-link active">Home</a></li>
+    <li><a href="#about" class="nav-link">About</a></li>
+    <li><a href="#skills" class="nav-link">Skills</a></li>
+    <li><a href="#projects" class="nav-link">Projects</a></li>
+    <li><a href="#contact" class="nav-link">Contact</a></li>
+  </ul>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-function spawnIcons() {
-  const count = Math.max(14, Math.min(22, Math.floor(window.innerWidth / 90)));
-  floatLayer.innerHTML = '';
-  iconNodes.length = 0;
+<!-- Hero -->
+<section id="hero" class="hero">
+  <div class="hero-inner glass">
+    <img src="/assets/images/profile.svg" alt="Luish profile" class="hero-avatar"/>
+    <h1 class="hero-title">Hi, I'm <span class="gradient-text">Luish</span></h1>
+    <h2 class="hero-sub"><span id="typing"></span><span class="cursor">|</span></h2>
+    <p class="hero-desc">Breaking things to make them safer — security researcher, CTF player, and lifelong learner.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+</section>
 
-  for (let i = 0; i < count; i++) {
-    const name = ICONS[i % ICONS.length];
-    const img = document.createElement('img');
-    img.src = `/assets/icons/${name}.svg`;
-    img.alt = '';
-    img.loading = 'lazy';
+<!-- About -->
+<section id="about" class="section reveal">
+  <div class="container glass">
+    <h2 class="section-title">About <span class="gradient-text">Me</span></h2>
+    <p class="section-text">
+      I'm a cybersecurity enthusiast focused on offensive security, web exploitation, and network forensics.
+      I love participating in CTFs, reverse engineering malware, and writing about what I learn.
+      My goal is to bridge the gap between attackers and defenders by understanding both sides deeply.
+    </p>
+  </div>
+</section>
 
-    const size = 50 + Math.random() * 70;
-    const x = Math.random() * 100;
-    const y = Math.random() * 200; // spread over scroll height
-    const dur = 14 + Math.random() * 22;
-    const delay = -Math.random() * dur;
-    const dir = Math.random() > 0.5 ? 1 : -1;
+<!-- Skills -->
+<section id="skills" class="section reveal">
+  <div class="container">
+    <h2 class="section-title">Tools &amp; <span class="gradient-text">Skills</span></h2>
+    <div class="skills-grid">
+      <div class="skill-card glass"><img src="/assets/icons/burpsuite.svg" alt=""><span>Burp Suite</span></div>
+      <div class="skill-card glass"><img src="/assets/icons/nmap.svg" alt=""><span>Nmap</span></div>
+      <div class="skill-card glass"><img src="/assets/icons/wireshark.svg" alt=""><span>Wireshark</span></div>
+      <div class="skill-card glass"><img src="/assets/icons/metasploit.svg" alt=""><span>Metasploit</span></div>
+      <div class="skill-card glass"><img src="/assets/icons/sqlmap.svg" alt=""><span>SQLMap</span></div>
+      <div class="skill-card glass"><img src="/assets/icons/hydra.svg" alt=""><span>Hydra</span></div>
+      <div class="skill-card glass"><img src="/assets/icons/hashcat.svg" alt=""><span>Hashcat</span></div>
+      <div class="skill-card glass"><img src="/assets/icons/kali.svg" alt=""><span>Kali Linux</span></div>
+      <div class="skill-card glass"><img src="/assets/icons/tryhackme.svg" alt=""><span>TryHackMe</span></div>
+      <div class="skill-card glass"><img src="/assets/icons/hackthebox.svg" alt=""><span>Hack The Box</span></div>
+    </div>
+  </div>
+</section>
 
-    img.style.width = `${size}px`;
-    img.style.height = `${size}px`;
-    img.style.left = `${x}%`;
-    img.style.top = `${y}%`;
-    img.style.animationDuration = `${dur}s`;
-    img.style.animationDelay = `${delay}s`;
-    img.style.animationDirection = dir > 0 ? 'normal' : 'reverse';
+<!-- Projects -->
+<section id="projects" class="section reveal">
+  <div class="container">
+    <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+    <div class="projects-grid">
+      <article class="project-card glass">
+        <h3>Web Recon Toolkit</h3>
+        <p>A modular Python toolkit that automates subdomain enumeration, port scanning, and vulnerability tagging.</p>
+        <div class="tags"><span>Python</span><span>Recon</span><span>OSINT</span></div>
+      </article>
+      <article class="project-card glass">
+        <h3>CTF Write-ups</h3>
+        <p>Detailed walkthroughs of HTB &amp; THM machines covering privilege escalation, web exploits and crypto.</p>
+        <div class="tags"><span>HTB</span><span>THM</span><span>Writeups</span></div>
+      </article>
+      <article class="project-card glass">
+        <h3>Phishing Detector</h3>
+        <p>Browser extension that flags suspicious URLs using heuristics and a lightweight ML model.</p>
+        <div class="tags"><span>JS</span><span>ML</span><span>Security</span></div>
+      </article>
+    </div>
+  </div>
+</section>
 
-    floatLayer.appendChild(img);
-    iconNodes.push({
-      el: img,
-      speed: 0.05 + Math.random() * 0.35, // parallax speed
-      mx: (Math.random() - 0.5) * 30,     // mouse intensity x
-      my: (Math.random() - 0.5) * 30,
-      baseY: y
-    });
-  }
-}
-spawnIcons();
-window.addEventListener('resize', () => {
-  clearTimeout(window.__r);
-  window.__r = setTimeout(spawnIcons, 200);
-});
+<!-- Contact -->
+<section id="contact" class="section reveal">
+  <div class="container glass contact-card">
+    <h2 class="section-title">Let's <span class="gradient-text">Connect</span></h2>
+    <p class="section-text">Got a project, collab idea, or just want to chat security? Drop me a line.</p>
+    <a href="mailto:hello@luish.com.np" class="btn btn-primary">hello@luish.com.np</a>
+    <div class="socials">
+      <a href="#" aria-label="GitHub">GitHub</a>
+      <a href="#" aria-label="Twitter">Twitter</a>
+      <a href="#" aria-label="LinkedIn">LinkedIn</a>
+    </div>
+  </div>
+</section>
 
-/* ---------- Scroll + mouse parallax (rAF, fps-friendly) ---------- */
-let scrollY = window.scrollY;
-let mouseX = 0, mouseY = 0;
-let targetMX = 0, targetMY = 0;
+<footer class="footer">
+  <p>© <span id="year"></span> Luish. Built with curiosity ⚡</p>
+</footer>
 
-window.addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive: true });
-window.addEventListener('mousemove', (e) => {
-  targetMX = (e.clientX / window.innerWidth - 0.5) * 2;
-  targetMY = (e.clientY / window.innerHeight - 0.5) * 2;
-}, { passive: true });
-
-function tick() {
-  // ease mouse
-  mouseX += (targetMX - mouseX) * 0.06;
-  mouseY += (targetMY - mouseY) * 0.06;
-
-  for (const n of iconNodes) {
-    const ty = -scrollY * n.speed;
-    const tx = mouseX * n.mx;
-    const my = mouseY * n.my;
-    n.el.style.transform = `translate3d(${tx}px, ${ty + my}px, 0)`;
-  }
-  requestAnimationFrame(tick);
-}
-requestAnimationFrame(tick);
-
-/* ---------- Navbar shrink + active link ---------- */
-const navbar = document.getElementById('navbar');
-const navLinks = document.querySelectorAll('.nav-link');
-const sections = [...document.querySelectorAll('section[id]')];
-
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 30);
-
-  const y = window.scrollY + 120;
-  let current = sections[0]?.id;
-  for (const s of sections) {
-    if (s.offsetTop <= y) current = s.id;
-  }
-  navLinks.forEach(l => {
-    l.classList.toggle('active', l.getAttribute('href') === `#${current}`);
-  });
-}, { passive: true });
-
-/* ---------- Mobile menu ---------- */
-const toggle = document.getElementById('menuToggle');
-const links = document.querySelector('.nav-links');
-toggle.addEventListener('click', () => links.classList.toggle('open'));
-navLinks.forEach(l => l.addEventListener('click', () => links.classList.remove('open')));
-
-/* ---------- Typing animation ---------- */
-const phrases = [
-  'Cybersecurity Enthusiast',
-  'Penetration Tester',
-  'CTF Player',
-  'Security Researcher'
-];
-const typingEl = document.getElementById('typing');
-let pi = 0, ci = 0, deleting = false;
-
-function type() {
-  const word = phrases[pi];
-  typingEl.textContent = word.slice(0, ci);
-  if (!deleting && ci < word.length) {
-    ci++; setTimeout(type, 80);
-  } else if (deleting && ci > 0) {
-    ci--; setTimeout(type, 40);
-  } else {
-    if (!deleting) { deleting = true; setTimeout(type, 1400); }
-    else { deleting = false; pi = (pi + 1) % phrases.length; setTimeout(type, 250); }
-  }
-}
-type();
-
-/* ---------- Reveal on scroll ---------- */
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('in');
-      io.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+<script src="script.js"></script>
+</body>
+</html>
