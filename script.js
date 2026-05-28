@@ -1,143 +1,84 @@
-/* ============================================
-   Luish portfolio — interactions
-   ============================================ */
-
+// ---------- Floating background icons ----------
 const ICONS = [
-  'burpsuite','hashcat','kali','nmap','tryhackme',
-  'hackthebox','hydra','metasploit','sqlmap','wireshark'
+  'nmap','burpsuite','metasploit','wireshark','hydra',
+  'sqlmap','hashcat','kali','tryhackme','hackthebox'
 ];
-
-/* ---------- Year ---------- */
-document.getElementById('year').textContent = new Date().getFullYear();
-
-/* ---------- Floating icons generator ---------- */
-const floatLayer = document.getElementById('floatingIcons');
-const iconNodes = [];
-
-function spawnIcons() {
-  const count = Math.max(14, Math.min(22, Math.floor(window.innerWidth / 90)));
-  floatLayer.innerHTML = '';
-  iconNodes.length = 0;
-
-  for (let i = 0; i < count; i++) {
-    const name = ICONS[i % ICONS.length];
+(function spawnIcons(){
+  const container = document.getElementById('bgIcons');
+  if(!container) return;
+  const count = window.innerWidth < 700 ? 12 : 20;
+  for(let i=0;i<count;i++){
     const img = document.createElement('img');
-    img.src = `/assets/icons/${name}.svg`;
+    img.src = `assets/icons/${ICONS[i % ICONS.length]}.svg`;
     img.alt = '';
-    img.loading = 'lazy';
-
-    const size = 50 + Math.random() * 70;
-    const x = Math.random() * 100;
-    const y = Math.random() * 200; // spread over scroll height
-    const dur = 14 + Math.random() * 22;
-    const delay = -Math.random() * dur;
-    const dir = Math.random() > 0.5 ? 1 : -1;
-
-    img.style.width = `${size}px`;
-    img.style.height = `${size}px`;
-    img.style.left = `${x}%`;
-    img.style.top = `${y}%`;
-    img.style.animationDuration = `${dur}s`;
-    img.style.animationDelay = `${delay}s`;
-    img.style.animationDirection = dir > 0 ? 'normal' : 'reverse';
-
-    floatLayer.appendChild(img);
-    iconNodes.push({
-      el: img,
-      speed: 0.05 + Math.random() * 0.35, // parallax speed
-      mx: (Math.random() - 0.5) * 30,     // mouse intensity x
-      my: (Math.random() - 0.5) * 30,
-      baseY: y
-    });
+    const size = 40 + Math.random()*80;
+    img.style.width = size + 'px';
+    img.style.height = size + 'px';
+    img.style.left = Math.random()*100 + 'vw';
+    img.style.top  = Math.random()*100 + 'vh';
+    img.style.animationDuration = (18 + Math.random()*22) + 's';
+    img.style.animationDelay = (-Math.random()*20) + 's';
+    img.style.opacity = (0.12 + Math.random()*0.12).toFixed(2);
+    container.appendChild(img);
   }
-}
-spawnIcons();
-window.addEventListener('resize', () => {
-  clearTimeout(window.__r);
-  window.__r = setTimeout(spawnIcons, 200);
-});
+})();
 
-/* ---------- Scroll + mouse parallax (rAF, fps-friendly) ---------- */
-let scrollY = window.scrollY;
-let mouseX = 0, mouseY = 0;
-let targetMX = 0, targetMY = 0;
+// ---------- Mobile menu ----------
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.getElementById('navLinks');
+menuBtn?.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks?.querySelectorAll('a').forEach(a =>
+  a.addEventListener('click', () => navLinks.classList.remove('open'))
+);
 
-window.addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive: true });
-window.addEventListener('mousemove', (e) => {
-  targetMX = (e.clientX / window.innerWidth - 0.5) * 2;
-  targetMY = (e.clientY / window.innerHeight - 0.5) * 2;
-}, { passive: true });
-
-function tick() {
-  // ease mouse
-  mouseX += (targetMX - mouseX) * 0.06;
-  mouseY += (targetMY - mouseY) * 0.06;
-
-  for (const n of iconNodes) {
-    const ty = -scrollY * n.speed;
-    const tx = mouseX * n.mx;
-    const my = mouseY * n.my;
-    n.el.style.transform = `translate3d(${tx}px, ${ty + my}px, 0)`;
-  }
-  requestAnimationFrame(tick);
-}
-requestAnimationFrame(tick);
-
-/* ---------- Navbar shrink + active link ---------- */
-const navbar = document.getElementById('navbar');
-const navLinks = document.querySelectorAll('.nav-link');
+// ---------- Active nav highlighting (rAF, FPS-friendly) ----------
 const sections = [...document.querySelectorAll('section[id]')];
-
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 30);
-
-  const y = window.scrollY + 120;
-  let current = sections[0]?.id;
-  for (const s of sections) {
-    if (s.offsetTop <= y) current = s.id;
-  }
-  navLinks.forEach(l => {
-    l.classList.toggle('active', l.getAttribute('href') === `#${current}`);
+const linkMap = new Map(
+  [...document.querySelectorAll('.nav-links a')].map(a => [a.getAttribute('href').slice(1), a])
+);
+let ticking = false;
+function onScroll(){
+  if(ticking) return;
+  ticking = true;
+  requestAnimationFrame(() => {
+    const y = window.scrollY + 120;
+    let current = sections[0]?.id;
+    for(const s of sections){ if(s.offsetTop <= y) current = s.id; }
+    linkMap.forEach((el, id) => el.classList.toggle('active', id === current));
+    ticking = false;
   });
-}, { passive: true });
-
-/* ---------- Mobile menu ---------- */
-const toggle = document.getElementById('menuToggle');
-const links = document.querySelector('.nav-links');
-toggle.addEventListener('click', () => links.classList.toggle('open'));
-navLinks.forEach(l => l.addEventListener('click', () => links.classList.remove('open')));
-
-/* ---------- Typing animation ---------- */
-const phrases = [
-  'Cybersecurity Enthusiast',
-  'Penetration Tester',
-  'CTF Player',
-  'Security Researcher'
-];
-const typingEl = document.getElementById('typing');
-let pi = 0, ci = 0, deleting = false;
-
-function type() {
-  const word = phrases[pi];
-  typingEl.textContent = word.slice(0, ci);
-  if (!deleting && ci < word.length) {
-    ci++; setTimeout(type, 80);
-  } else if (deleting && ci > 0) {
-    ci--; setTimeout(type, 40);
-  } else {
-    if (!deleting) { deleting = true; setTimeout(type, 1400); }
-    else { deleting = false; pi = (pi + 1) % phrases.length; setTimeout(type, 250); }
-  }
 }
-type();
+window.addEventListener('scroll', onScroll, { passive:true });
+onScroll();
 
-/* ---------- Reveal on scroll ---------- */
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('in');
-      io.unobserve(e.target);
+// ---------- Typing animation ----------
+const phrases = [
+  'Aspiring Cybersecurity Analyst',
+  'Red Team Learner',
+  'CTF Player · TryHackMe + HTB',
+  'Home Lab Builder'
+];
+const typed = document.getElementById('typed');
+if(typed){
+  let pi=0, ci=0, deleting=false;
+  (function tick(){
+    const word = phrases[pi];
+    typed.textContent = word.slice(0, ci);
+    if(!deleting && ci < word.length){ ci++; setTimeout(tick, 70); }
+    else if(deleting && ci > 0){ ci--; setTimeout(tick, 35); }
+    else{
+      if(!deleting){ deleting = true; setTimeout(tick, 1400); }
+      else { deleting = false; pi = (pi+1) % phrases.length; setTimeout(tick, 250); }
     }
-  });
+  })();
+}
+
+// ---------- Reveal on scroll ----------
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
 }, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+document.querySelectorAll('.section, .tool, .proj, .cert, .exp, .stat-card, .info-card')
+  .forEach(el => { el.classList.add('reveal'); io.observe(el); });
+
+// ---------- Year ----------
+document.getElementById('yr').textContent = new Date().getFullYear();
