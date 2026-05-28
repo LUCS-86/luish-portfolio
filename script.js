@@ -155,32 +155,70 @@ document.addEventListener('DOMContentLoaded', () => {
     io.observe(el);
   });
 
-  // ---- Floating cyber icons (background) ----
+  // ---- Floating brand icons (scroll-parallax) ----
   const fi = document.getElementById('floatingIcons');
-  const fIcons = ['radar','shield','crosshair','wave','key','database','hash','terminal','flag','box'];
-  const colors = ['','cyan','blue'];
-  for (let i = 0; i < 14; i++) {
+  const brandIcons = [
+    'assets/icons/nmap.svg',
+    'assets/icons/burpsuite.svg',
+    'assets/icons/metasploit.svg',
+    'assets/icons/wireshark.svg',
+    'assets/icons/hydra.svg',
+    'assets/icons/sqlmap.svg',
+    'assets/icons/hashcat.svg',
+    'assets/icons/kali.svg',
+    'assets/icons/tryhackme.svg',
+    'assets/icons/hackthebox.svg'
+  ];
+  const floatNodes = [];
+  // Spread across the entire document height so they reveal as the user scrolls
+  const TOTAL_BANDS = 18;
+  for (let i = 0; i < TOTAL_BANDS; i++) {
     const d = document.createElement('div');
-    d.className = 'f-ico ' + colors[i % 3];
-    d.style.top = Math.random() * 100 + '%';
-    d.style.left = Math.random() * 100 + '%';
-    d.style.animationDelay = (-Math.random() * 14) + 's';
-    d.style.width = d.style.height = (40 + Math.random() * 40) + 'px';
-    d.innerHTML = ICONS[fIcons[i % fIcons.length]];
+    d.className = 'f-ico';
+    // Distribute vertically across full scrollable height (in vh units)
+    const topVh = (i / TOTAL_BANDS) * 100 * (document.body.scrollHeight / window.innerHeight || 4);
+    d.style.top = topVh + 'vh';
+    d.style.left = (5 + Math.random() * 85) + '%';
+    const size = 60 + Math.random() * 70;
+    d.style.width = d.style.height = size + 'px';
+    const img = document.createElement('img');
+    img.src = brandIcons[i % brandIcons.length];
+    img.alt = '';
+    img.loading = 'lazy';
+    d.appendChild(img);
+    // Per-icon parallax speed (0.15 - 0.55)
+    d._speed = 0.15 + Math.random() * 0.4;
+    d._rot = (Math.random() - 0.5) * 0.05;
+    d._baseX = 0;
     fi.appendChild(d);
+    floatNodes.push(d);
   }
+  // Scroll-driven movement
+  function updateParallax() {
+    const y = window.scrollY;
+    floatNodes.forEach(n => {
+      const ty = -y * n._speed;
+      const rot = y * n._rot;
+      n.style.transform = `translate3d(${n._baseX}px, ${ty}px, 0) rotate(${rot}deg)`;
+    });
+  }
+  window.addEventListener('scroll', updateParallax, { passive: true });
+  window.addEventListener('resize', updateParallax);
+  // Recompute after layout settles (fonts, images)
+  setTimeout(updateParallax, 200);
+  window.addEventListener('load', updateParallax);
 
-  // ---- Mouse parallax on icons ----
+  // ---- Mouse parallax on avatar only (icons use scroll parallax) ----
   document.addEventListener('mousemove', e => {
-    const x = (e.clientX / window.innerWidth - .5) * 20;
-    const y = (e.clientY / window.innerHeight - .5) * 20;
-    fi.style.transform = `translate(${x}px, ${y}px)`;
     const stage = document.getElementById('avatarStage');
     if (stage) {
       const rx = (e.clientY / window.innerHeight - .5) * -8;
       const ry = (e.clientX / window.innerWidth - .5) * 8;
       stage.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
     }
+    // Subtle mouse-based horizontal nudge for floating icons
+    const mx = (e.clientX / window.innerWidth - .5) * 30;
+    floatNodes.forEach(n => { n._baseX = mx * n._speed; });
   });
 
   // ---- Particles ----
@@ -233,36 +271,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---- Back to top ----
   document.getElementById('toTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-  // ---- Resume download (generates a text resume) ----
-  document.getElementById('downloadResume').addEventListener('click', e => {
-    e.preventDefault();
-    const txt = `LUISH NIRAULA
-Aspiring Cybersecurity Analyst | Ethical Hacking Enthusiast | Red Teaming Learner
-
-Email: luishniraula86@gmail.com
-LinkedIn: https://www.linkedin.com/in/luish-niraula-493627275/
-GitHub: https://github.com/LUCS-86
-Location: Kathmandu, Nepal
-
-PROFILE
-Motivated cybersecurity student building practical skills through TryHackMe,
-Hack The Box, and a personal home lab.
-
-EXPERIENCE
-- Cyber Security Student, Raechal Enterprises Pvt. Ltd. (Oct 2025 - Present)
-- Home Cyber Lab Practitioner (Ongoing)
-
-EDUCATION
-- BSc CSIT, Birendra Memorial College
-- 10+2, Bishnu Memorial Secondary School (2022)
-- SLC, Bishnu Memorial Secondary School (2020)
-
-LANGUAGES
-Nepali (Fluent), English (Advanced), Hindi (Fluent)`;
-    const blob = new Blob([txt], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url; a.download = 'Luish_Niraula_Resume.txt'; a.click();
-    URL.revokeObjectURL(url);
-  });
+  // ---- Resume download (link to PDF in /assets) ----
+  const resumeBtn = document.getElementById('downloadResume');
+  if (resumeBtn) {
+    resumeBtn.setAttribute('href', 'assets/resume.pdf');
+    resumeBtn.setAttribute('download', 'Luish_Niraula_Resume.pdf');
+    resumeBtn.setAttribute('target', '_blank');
+    resumeBtn.setAttribute('rel', 'noopener');
+  }
 });
