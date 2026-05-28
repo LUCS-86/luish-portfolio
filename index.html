@@ -1,121 +1,252 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Luish — Cybersecurity Enthusiast</title>
-<meta name="description" content="Portfolio of Luish — cybersecurity, pentesting, and CTF write-ups." />
-<link rel="icon" href="/assets/images/profile.svg" type="image/svg+xml" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Luish Niraula — Aspiring Cybersecurity Analyst</title>
+<meta name="description" content="Portfolio of Luish Niraula — aspiring cybersecurity analyst focused on ethical hacking, red teaming and defensive security." />
+<link rel="icon" href="assets/images/profile.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<!-- Animated gradient background -->
-<div class="bg-gradient"></div>
+<!-- floating background icons -->
+<div class="bg-icons" id="bgIcons" aria-hidden="true"></div>
+<div class="bg-grid" aria-hidden="true"></div>
 
-<!-- Floating icons container -->
-<div class="floating-icons" id="floatingIcons" aria-hidden="true"></div>
+<!-- NAV -->
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#home" class="brand">
+      <span class="brand-dot"></span>
+      <span>Luish<span class="dot">.</span></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#certs">Certificates</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn-primary nav-cta" href="resume.pdf">Resume</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
 
-<!-- Navbar -->
-<nav class="navbar" id="navbar">
-  <a href="#hero" class="logo">luish<span>.</span></a>
-  <ul class="nav-links">
-    <li><a href="#hero" class="nav-link active">Home</a></li>
-    <li><a href="#about" class="nav-link">About</a></li>
-    <li><a href="#skills" class="nav-link">Skills</a></li>
-    <li><a href="#projects" class="nav-link">Projects</a></li>
-    <li><a href="#contact" class="nav-link">Contact</a></li>
-  </ul>
-  <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+<!-- HERO -->
+<section id="home" class="hero section">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="pill"><span class="pulse"></span> Available for opportunities</span>
+      <h1 class="title">
+        Hi, I'm
+        <span class="grad-text">Luish<br/>Niraula</span>
+      </h1>
+      <p class="mono accent"><span class="op">&gt;_</span> <span id="typed"></span><span class="caret">|</span></p>
+      <p class="lead">
+        An aspiring cybersecurity analyst learning ethical hacking, red teaming and
+        defensive security through hands-on labs, home environments and community
+        platforms. <em>Curiosity is the exploit. Discipline is the payload.</em>
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#projects">View Projects →</a>
+        <a class="btn btn-ghost" href="resume.pdf">Download Resume</a>
+        <a class="btn btn-ghost" href="#contact">Contact Me</a>
+      </div>
+      <div class="stats">
+        <div class="stat-card"><div class="stat-n">15+</div><div class="stat-l">Certifications</div></div>
+        <div class="stat-card"><div class="stat-n">50+</div><div class="stat-l">Labs Completed</div></div>
+        <div class="stat-card"><div class="stat-n">10+</div><div class="stat-l">Core Tools</div></div>
+      </div>
+    </div>
 
-<!-- Hero -->
-<section id="hero" class="hero">
-  <div class="hero-inner glass">
-    <img src="/assets/images/profile.svg" alt="Luish profile" class="hero-avatar"/>
-    <h1 class="hero-title">Hi, I'm <span class="gradient-text">Luish</span></h1>
-    <h2 class="hero-sub"><span id="typing"></span><span class="cursor">|</span></h2>
-    <p class="hero-desc">Breaking things to make them safer — security researcher, CTF player, and lifelong learner.</p>
-    <div class="hero-cta">
-      <a href="#projects" class="btn btn-primary">View Projects</a>
-      <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+    <div class="hero-orb-wrap">
+      <div class="orb">
+        <div class="orb-ring r1"></div>
+        <div class="orb-ring r2"></div>
+        <div class="orb-glow"></div>
+        <img src="assets/images/profile.svg" alt="Luish Niraula" class="profile" />
+        <span class="chip chip-top">SOC</span>
+        <span class="chip chip-right">Pentest</span>
+        <span class="chip chip-bottom">Red Team</span>
+        <span class="chip chip-left">OSINT</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- About -->
-<section id="about" class="section reveal">
-  <div class="container glass">
-    <h2 class="section-title">About <span class="gradient-text">Me</span></h2>
-    <p class="section-text">
-      I'm a cybersecurity enthusiast focused on offensive security, web exploitation, and network forensics.
-      I love participating in CTFs, reverse engineering malware, and writing about what I learn.
-      My goal is to bridge the gap between attackers and defenders by understanding both sides deeply.
-    </p>
-  </div>
-</section>
-
-<!-- Skills -->
-<section id="skills" class="section reveal">
+<!-- ABOUT -->
+<section id="about" class="section">
   <div class="container">
-    <h2 class="section-title">Tools &amp; <span class="gradient-text">Skills</span></h2>
-    <div class="skills-grid">
-      <div class="skill-card glass"><img src="/assets/icons/burpsuite.svg" alt=""><span>Burp Suite</span></div>
-      <div class="skill-card glass"><img src="/assets/icons/nmap.svg" alt=""><span>Nmap</span></div>
-      <div class="skill-card glass"><img src="/assets/icons/wireshark.svg" alt=""><span>Wireshark</span></div>
-      <div class="skill-card glass"><img src="/assets/icons/metasploit.svg" alt=""><span>Metasploit</span></div>
-      <div class="skill-card glass"><img src="/assets/icons/sqlmap.svg" alt=""><span>SQLMap</span></div>
-      <div class="skill-card glass"><img src="/assets/icons/hydra.svg" alt=""><span>Hydra</span></div>
-      <div class="skill-card glass"><img src="/assets/icons/hashcat.svg" alt=""><span>Hashcat</span></div>
-      <div class="skill-card glass"><img src="/assets/icons/kali.svg" alt=""><span>Kali Linux</span></div>
-      <div class="skill-card glass"><img src="/assets/icons/tryhackme.svg" alt=""><span>TryHackMe</span></div>
-      <div class="skill-card glass"><img src="/assets/icons/hackthebox.svg" alt=""><span>Hack The Box</span></div>
+    <div class="eyebrow">01 — About</div>
+    <h2 class="h2">A learner with a hacker's mindset</h2>
+    <div class="grid-2">
+      <div class="prose">
+        <p>I'm a cybersecurity student building practical, real-world skills through a continuous loop of <strong>learn → break → fix → document</strong>. My journey lives across <strong>TryHackMe</strong> rooms, <strong>Hack The Box</strong> machines, and a home cyber lab.</p>
+        <p>Currently focused on the offensive side — web app pentesting, OWASP Top 10, Active Directory basics, and privilege escalation — while strengthening blue-team foundations like log analysis and identity protection.</p>
+        <p>I treat every CTF, lab and writeup as a step toward becoming a well-rounded analyst.</p>
+      </div>
+      <div class="info-grid">
+        <div class="info-card"><div class="info-k">Location</div><div class="info-v">Kathmandu, Nepal</div></div>
+        <div class="info-card"><div class="info-k">Focus</div><div class="info-v">Offensive Security & Red Team</div></div>
+        <div class="info-card"><div class="info-k">Currently</div><div class="info-v">BSc CSIT · Cyber Security Student</div></div>
+        <div class="info-card"><div class="info-k">Mindset</div><div class="info-v">Practical learner, lab-driven</div></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Projects -->
-<section id="projects" class="section reveal">
+<!-- EXPERIENCE -->
+<section id="experience" class="section">
   <div class="container">
-    <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
-    <div class="projects-grid">
-      <article class="project-card glass">
-        <h3>Web Recon Toolkit</h3>
-        <p>A modular Python toolkit that automates subdomain enumeration, port scanning, and vulnerability tagging.</p>
-        <div class="tags"><span>Python</span><span>Recon</span><span>OSINT</span></div>
+    <div class="eyebrow">02 — Experience</div>
+    <h2 class="h2">Where I'm sharpening my craft</h2>
+    <div class="timeline">
+      <article class="exp">
+        <div class="exp-meta">Oct 2025 — Present · Kathmandu, Nepal</div>
+        <h3>Cyber Security Student</h3>
+        <h4>Raechal Enterprises Pvt. Ltd.</h4>
+        <ul>
+          <li>Learning cybersecurity operations and analyst workflows</li>
+          <li>Understanding core security fundamentals in a live environment</li>
+          <li>Practical exposure to security tooling and processes</li>
+          <li>Hands-on security learning under guided mentorship</li>
+        </ul>
       </article>
-      <article class="project-card glass">
-        <h3>CTF Write-ups</h3>
-        <p>Detailed walkthroughs of HTB &amp; THM machines covering privilege escalation, web exploits and crypto.</p>
-        <div class="tags"><span>HTB</span><span>THM</span><span>Writeups</span></div>
-      </article>
-      <article class="project-card glass">
-        <h3>Phishing Detector</h3>
-        <p>Browser extension that flags suspicious URLs using heuristics and a lightweight ML model.</p>
-        <div class="tags"><span>JS</span><span>ML</span><span>Security</span></div>
+      <article class="exp">
+        <div class="exp-meta">Ongoing · Remote · Self-Directed</div>
+        <h3>Home Cyber Lab Practitioner</h3>
+        <h4>Personal Practice Environment</h4>
+        <ul>
+          <li>Built multi-OS virtual lab (Windows & Kali Linux) for offensive practice</li>
+          <li>Vulnerability testing on intentionally vulnerable VMs</li>
+          <li>Reconnaissance, enumeration, and network scanning drills</li>
+          <li>TryHackMe learning paths and Hack The Box machines</li>
+        </ul>
       </article>
     </div>
   </div>
 </section>
 
-<!-- Contact -->
-<section id="contact" class="section reveal">
-  <div class="container glass contact-card">
-    <h2 class="section-title">Let's <span class="gradient-text">Connect</span></h2>
-    <p class="section-text">Got a project, collab idea, or just want to chat security? Drop me a line.</p>
-    <a href="mailto:hello@luish.com.np" class="btn btn-primary">hello@luish.com.np</a>
-    <div class="socials">
-      <a href="#" aria-label="GitHub">GitHub</a>
-      <a href="#" aria-label="Twitter">Twitter</a>
-      <a href="#" aria-label="LinkedIn">LinkedIn</a>
+<!-- SKILLS -->
+<section id="skills" class="section">
+  <div class="container">
+    <div class="eyebrow">03 — Toolbox</div>
+    <h2 class="h2">Tools & concepts I work with</h2>
+    <div class="tools-grid">
+      <div class="tool"><img src="assets/icons/nmap.svg" alt=""><div><h3>Nmap</h3><p>Network discovery and security auditing tool for reconnaissance and port scanning.</p></div></div>
+      <div class="tool"><img src="assets/icons/burpsuite.svg" alt=""><div><h3>Burp Suite</h3><p>Web application security testing and interception proxy tool.</p></div></div>
+      <div class="tool"><img src="assets/icons/metasploit.svg" alt=""><div><h3>Metasploit</h3><p>Framework for penetration testing and exploit development.</p></div></div>
+      <div class="tool"><img src="assets/icons/wireshark.svg" alt=""><div><h3>Wireshark</h3><p>Network packet analyzer for traffic inspection and troubleshooting.</p></div></div>
+      <div class="tool"><img src="assets/icons/hydra.svg" alt=""><div><h3>Hydra</h3><p>Fast network login cracker for brute-force testing.</p></div></div>
+      <div class="tool"><img src="assets/icons/sqlmap.svg" alt=""><div><h3>SQLMap</h3><p>Automated SQL injection and database takeover tool.</p></div></div>
+      <div class="tool"><img src="assets/icons/hashcat.svg" alt=""><div><h3>Hashcat</h3><p>Advanced password recovery and hash cracking utility.</p></div></div>
+      <div class="tool"><img src="assets/icons/kali.svg" alt=""><div><h3>Kali Linux</h3><p>Linux distribution focused on penetration testing and digital forensics.</p></div></div>
+      <div class="tool"><img src="assets/icons/tryhackme.svg" alt=""><div><h3>TryHackMe</h3><p>Hands-on cybersecurity learning and lab platform.</p></div></div>
+      <div class="tool"><img src="assets/icons/hackthebox.svg" alt=""><div><h3>Hack The Box</h3><p>Practical penetration testing and security challenge platform.</p></div></div>
+    </div>
+
+    <div class="concepts">
+      <div class="eyebrow">Concepts</div>
+      <h3 class="h3">From the Jr Pentester path</h3>
+      <div class="tags">
+        <span>Enumeration</span><span>Web App Pentesting</span><span>Linux Fundamentals</span>
+        <span>Network Scanning</span><span>OSINT</span><span>Privilege Escalation</span>
+        <span>Vulnerability Assessment</span><span>Basic Exploitation</span>
+        <span>OWASP Top 10</span><span>Active Directory Basics</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section">
+  <div class="container">
+    <div class="eyebrow">04 — Projects</div>
+    <h2 class="h2">Selected work & lab projects</h2>
+    <div class="proj-grid">
+      <article class="proj">
+        <h3>IBM Verify SaaS</h3>
+        <p>Worked with IBM Verify SaaS concepts focusing on identity protection, authentication flows, and security verification.</p>
+        <div class="tags small"><span>IAM</span><span>SaaS</span><span>Identity</span></div>
+      </article>
+      <article class="proj">
+        <h3>Home Cyber Lab</h3>
+        <p>Built a personal cybersecurity lab using virtual machines for reconnaissance, scanning, exploitation drills, and vuln testing.</p>
+        <div class="tags small"><span>Kali</span><span>VMware</span><span>Nmap</span></div>
+      </article>
+      <article class="proj">
+        <h3>TryHackMe Labs</h3>
+        <p>Completed practical labs focused on pentesting, enumeration, privilege escalation, OWASP Top 10, and security fundamentals.</p>
+        <div class="tags small"><span>Pentest</span><span>OWASP</span><span>PrivEsc</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CERTS -->
+<section id="certs" class="section">
+  <div class="container">
+    <div class="eyebrow">05 — Credentials</div>
+    <h2 class="h2">Certifications</h2>
+    <div class="cert-grid">
+      <div class="cert"><h3>Certified Online Fraud Prevention Specialist (COFPS)</h3><p>Hack & Fix</p><span>May 2026 · ID: 1295-2712-1401-1464</span></div>
+      <div class="cert"><h3>Cyber Security 101 Certificate</h3><p>TryHackMe</p><span>May 2026 · ID: THM-7TJJSJVHO4</span></div>
+      <div class="cert"><h3>Verify (SaaS): User Introduction</h3><p>IBM</p><span>March 2026</span></div>
+      <div class="cert"><h3>Instana Intermediate</h3><p>IBM</p><span>January 2026</span></div>
+      <div class="cert"><h3>Instana Sales Foundation</h3><p>IBM</p><span>January 2026</span></div>
+      <div class="cert"><h3>Verify Identity Protection Technical Sales Intermediate</h3><p>IBM</p><span>January 2026</span></div>
+      <div class="cert"><h3>Verify Identity Protection Sales Foundation</h3><p>IBM</p><span>January 2026</span></div>
+      <div class="cert"><h3>Certified Threat Intelligence & Governance Analyst (CTIGA)</h3><p>Red TeamLeaders</p><span>January 2026</span></div>
+      <div class="cert"><h3>Cybersecurity Career Starter Certification (CCSC)</h3><p>Hack & Fix</p><span>December 2025 · ID: 8842-2270-2153-2061</span></div>
+      <div class="cert"><h3>Certified Phishing Prevention Specialist (CPPS)</h3><p>Hack & Fix</p><span>December 2025 · ID: 8743-1376-3496-3622</span></div>
+      <div class="cert"><h3>Certified Cybersecurity Educator Professional (CCEP)</h3><p>Red TeamLeaders</p><span>November 2025</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="eyebrow">06 — Contact</div>
+    <h2 class="h2">Let's build something secure</h2>
+    <div class="grid-2">
+      <div>
+        <h3 class="h3">Open to internships, collaborations & mentorship.</h3>
+        <p class="lead">Drop a message — I usually reply within a day.</p>
+        <p><a class="btn btn-primary" href="mailto:luishniraula86@gmail.com">luishniraula86@gmail.com</a></p>
+        <p class="social">
+          <a href="https://www.linkedin.com/in/luish-niraula-493627275/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/LUCS-86" target="_blank" rel="noopener">GitHub</a>
+        </p>
+      </div>
+      <div class="terminal">
+        <div class="term-bar">
+          <span></span><span></span><span></span>
+          <span class="term-title">~/contact.sh</span>
+        </div>
+        <pre class="term-body"><span class="p">luish@portfolio:~$</span> whoami
+aspiring_cybersec_analyst
+
+<span class="p">luish@portfolio:~$</span> cat status.txt
+<span class="ok">[OK]</span> Open to opportunities
+<span class="ok">[OK]</span> Learning red team & pentesting
+<span class="ok">[OK]</span> Always shipping labs
+
+<span class="p">luish@portfolio:~$</span> ./connect --secure<span class="caret">|</span></pre>
+      </div>
     </div>
   </div>
 </section>
 
 <footer class="footer">
-  <p>© <span id="year"></span> Luish. Built with curiosity ⚡</p>
+  <div class="container">© <span id="yr"></span> Luish Niraula · Built with curiosity.</div>
 </footer>
 
 <script src="script.js"></script>
