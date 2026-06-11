@@ -274,6 +274,26 @@ body {
     color: var(--accent-hover);
 }
 
+/* Email Button Style */
+.contact-email-btn {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--bg-card-solid);
+    border: 1px solid var(--shadow);
+    border-radius: 6px;
+    color: var(--text-heading);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.contact-email-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent-hover);
+    box-shadow: 0 2px 8px var(--shadow-hover);
+    transform: translateY(-2px);
+}
+
 /* Timeline */
 .timeline {
     position: relative;
