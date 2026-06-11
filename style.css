@@ -249,9 +249,9 @@ body {
 
 .profile-image {
     width: 250px;
-    height: 250px;
+    height: auto;
+    display: block;
     border-radius: 8px;
-    object-fit: cover;
     box-shadow: -10px 10px 0px var(--accent);
 }
 
