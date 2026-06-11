@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,270 +8,303 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+
+    <!-- Watercolor background created from scratch (inline SVG) -->
+    <svg class="bg-watercolor" preserveAspectRatio="xMidYMid slice" viewBox="0 0 800 1100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <filter id="b1" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="40"/>
+        </filter>
+        <filter id="b2" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="20"/>
+        </filter>
+        <filter id="b3" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="6"/>
+        </filter>
+      </defs>
+      <rect width="100%" height="100%" fill="#f0f5f8"/>
+      <!-- Blue washes -->
+      <path d="M0 300 C 150 150, 350 450, 600 250 C 750 150, 850 400, 800 600 C 750 850, 500 950, 300 850 C 100 750, -50 550, 0 300Z" fill="#a8dff0" filter="url(#b1)" opacity="0.5"/>
+      <path d="M200 0 C 350 100, 250 400, 450 500 C 600 580, 550 850, 400 900 C 200 980, 100 750, 150 550 C 180 400, 50 200, 200 0Z" fill="#d0f0f8" filter="url(#b1)" opacity="0.5"/>
+      <ellipse cx="350" cy="480" rx="220" ry="130" fill="#b0e8f5" transform="rotate(-8 350 480)" filter="url(#b2)" opacity="0.45"/>
+      <ellipse cx="120" cy="650" rx="140" ry="90" fill="#c0e8f5" transform="rotate(25 120 650)" filter="url(#b2)" opacity="0.4"/>
+      <ellipse cx="700" cy="400" rx="120" ry="70" fill="#90d8ec" transform="rotate(-15 700 400)" filter="url(#b2)" opacity="0.35"/>
+      <!-- Orange blobs -->
+      <ellipse cx="500" cy="160" rx="80" ry="55" fill="#ff8850" transform="rotate(20 500 160)" filter="url(#b2)" opacity="0.55"/>
+      <ellipse cx="620" cy="880" rx="90" ry="65" fill="#ff7030" transform="rotate(-12 620 880)" filter="url(#b2)" opacity="0.55"/>
+      <path d="M 420 140 Q 470 80, 530 130 T 560 190 Q 500 220, 420 140Z" fill="#ffaa80" filter="url(#b2)" opacity="0.4"/>
+      <path d="M 580 840 Q 630 780, 690 830 T 720 890 Q 660 920, 580 840Z" fill="#ff9060" filter="url(#b2)" opacity="0.4"/>
+      <!-- Cyan dots -->
+      <g fill="#00a0b0" filter="url(#b3)">
+        <circle cx="180" cy="170" r="4"/><circle cx="205" cy="155" r="6"/><circle cx="225" cy="185" r="3"/><circle cx="260" cy="210" r="2.5"/>
+        <circle cx="290" cy="235" r="3"/><circle cx="310" cy="195" r="2"/><circle cx="200" cy="800" r="3"/><circle cx="185" cy="825" r="2"/>
+        <circle cx="215" cy="780" r="2"/>
+      </g>
+      <!-- Red dots -->
+      <g fill="#e03030" filter="url(#b3)">
+        <circle cx="315" cy="265" r="5"/><circle cx="340" cy="245" r="3"/><circle cx="295" cy="285" r="2.5"/>
+        <circle cx="270" cy="305" r="2"/><circle cx="505" cy="980" r="2.5"/><circle cx="525" cy="995" r="3"/>
+        <circle cx="550" cy="1010" r="2"/><circle cx="500" cy="1015" r="2"/>
+      </g>
+      <!-- Dark teal dots -->
+      <g fill="#0080a0" filter="url(#b3)">
+        <circle cx="660" cy="955" r="4"/><circle cx="640" cy="935" r="3"/><circle cx="680" cy="970" r="2.5"/>
+        <circle cx="650" cy="985" r="2"/><circle cx="675" cy="945" r="2"/>
+      </g>
+    </svg>
+
     <header class="header">
         <div class="header-container">
             <div class="logo-container">
-                <!-- Replace 'logo.jpg' with your actual logo file name -->
                 <img src="logo.jpg" alt="LUCS Logo" class="logo">
                 <div class="logo-text">
                     <h1>LUISH NIRAULA</h1>
                     <p>Cybersecurity Professional</p>
                 </div>
             </div>
-            <nav class="nav-tabs">
-                <button class="tab-link active" data-tab="about">About</button>
-                <button class="tab-link" data-tab="experience">Experience</button>
-                <button class="tab-link" data-tab="skills">Skills</button>
-                <button class="tab-link" data-tab="education">Education</button>
-                <button class="tab-link" data-tab="certifications">Certifications</button>
-                <button class="tab-link" data-tab="contact">Contact Me</button>
-            </nav>
+            <div class="nav-wrapper">
+                <nav class="nav-tabs">
+                    <button class="tab-link active" data-tab="about">About</button>
+                    <button class="tab-link" data-tab="experience">Experience</button>
+                    <button class="tab-link" data-tab="skills">Skills</button>
+                    <button class="tab-link" data-tab="education">Education</button>
+                    <button class="tab-link" data-tab="certifications">Certifications</button>
+                    <button class="tab-link" data-tab="contact">Contact Me</button>
+                </nav>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
         </div>
     </header>
 
     <main class="main-content">
-        <div class="slider-wrapper">
-            <!-- ABOUT SECTION -->
-            <section id="about" class="tab-content active">
-                <div class="profile-card">
-                    <div class="profile-image-container">
-                        <!-- Replace 'profile.jpg' with your actual photo file name -->
-                        <img src="profile.jpg" alt="Luish Niraula" class="profile-image">
-                    </div>
-                    <div class="profile-info">
-                        <h2>Luish Niraula</h2>
-                        <h3 class="accent-text">Ethical Hacking | Threat Intelligence</h3>
-                        <p class="summary">A driven and certified Cybersecurity Professional with demonstrated expertise in red teaming, threat intelligence, network vulnerability assessment, and fraud prevention. With multiple industry-recognized certifications from TryHackMe, IBM, Hack & Fix, and Red TeamLeaders, I bring both theoretical knowledge and hands-on practical skills developed through real-world lab environments and competitive hacking platforms. Committed to safeguarding digital ecosystems, I combine technical proficiency with strong analytical thinking and a continuous-learning mindset to stay ahead of evolving cyber threats.</p>
-                        
-                        <div class="contact-grid">
-                            <div class="contact-item"><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="79150c100a1117100b180c1518414f391e14181015571a1614">[email&#160;protected]</a></div>
-                            <div class="contact-item"><i class="fas fa-phone"></i> +977 9862232586</div>
-                            <div class="contact-item"><i class="fas fa-map-marker-alt"></i> Kathmandu, Nepal</div>
-                            <div class="contact-item"><i class="fab fa-linkedin"></i> linkedin.com/in/luish-niraula-493627275</div>
-                            <div class="contact-item"><i class="fab fa-github"></i> github.com/LUCS-86</div>
-                        </div>
-                    </div>
+        <!-- ABOUT SECTION -->
+        <section id="about" class="tab-content active">
+            <div class="profile-card">
+                <div class="profile-image-container">
+                    <img src="profile.jpg" alt="Luish Niraula" class="profile-image">
                 </div>
-            </section>
-
-            <!-- EXPERIENCE SECTION -->
-            <section id="experience" class="tab-content">
-                <h2 class="section-title">Professional Experience</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <h3>System Security Analyst</h3>
-                            <h4>Raechal Enterprises Pvt. Ltd. <span class="date">Oct 2025 - Present | Kathmandu, Nepal (On-site)</span></h4>
-                            <ul>
-                                <li>Deploy, configure, and support Splashtop for remote access and endpoint support.</li>
-                                <li>Manage software deployment, patch management, and endpoint administration using PDQ Deploy and PDQ Inventory.</li>
-                                <li>Monitor client infrastructure, logs, and alerts using Motadata.</li>
-                                <li>Assist in identity and access management (IAM) operations using IBM Verify.</li>
-                                <li>Troubleshoot client issues related to endpoint management, remote access, authentication, and monitoring systems.</li>
-                                <li>Coordinate with client IT teams for deployment, maintenance, and issue resolution.</li>
-                                <li>Prepare technical documentation, system reports, and support records.</li>
-                                <li>Provide technical support and basic security recommendations to clients.</li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="profile-info">
+                    <h2>Luish Niraula</h2>
+                    <h3 class="accent-text">Ethical Hacking | Threat Intelligence</h3>
+                    <p class="summary">A driven and certified Cybersecurity Professional with demonstrated expertise in red teaming, threat intelligence, network vulnerability assessment, and fraud prevention. With multiple industry-recognized certifications from TryHackMe, IBM, Hack & Fix, and Red TeamLeaders, I bring both theoretical knowledge and hands-on practical skills developed through real-world lab environments and competitive hacking platforms. Committed to safeguarding digital ecosystems, I combine technical proficiency with strong analytical thinking and a continuous-learning mindset to stay ahead of evolving cyber threats.</p>
                     
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <h3>Independent Cyber Lab Practitioner</h3>
-                            <h4>Self-Directed Research <span class="date">Ongoing | Remote</span></h4>
-                            <ul>
-                                <li>Built and managed multi-OS virtual lab environments (Windows & Kali Linux) for offensive security training.</li>
-                                <li>Pursuing structured learning paths on TryHackMe and HackTheBox, earning platform-recognized credentials.</li>
-                                <li>Executed hands-on exercises in reconnaissance, port scanning, exploitation, and post-exploitation techniques.</li>
-                                <li>Studied and practiced phishing analysis, OSINT gathering, and fraud detection methodologies.</li>
-                            </ul>
-                        </div>
+                    <div class="contact-grid">
+                        <div class="contact-item"><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6c0019051f0402051e0d19000d545a2c0b010d0500420f0301">[email&#160;protected]</a></div>
+                        <div class="contact-item"><i class="fas fa-phone"></i> +977 9862232586</div>
+                        <div class="contact-item"><i class="fas fa-map-marker-alt"></i> Kathmandu, Nepal</div>
+                        <div class="contact-item"><i class="fab fa-linkedin"></i> linkedin.com/in/luish-niraula-493627275</div>
+                        <div class="contact-item"><i class="fab fa-github"></i> github.com/LUCS-86</div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- SKILLS SECTION -->
-            <section id="skills" class="tab-content">
-                <h2 class="section-title">Technical Skills</h2>
-                <div class="skills-grid">
-                    <div class="skill-card">
-                        <i class="fas fa-shield-alt skill-icon"></i>
-                        <h3>Security Platforms</h3>
-                        <p>TryHackMe, HackTheBox, IBM QRadar (Instana), Splashtop, PDQ, IBM Verify</p>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fas fa-user-secret skill-icon"></i>
-                        <h3>Offensive Security</h3>
-                        <p>Reconnaissance, Vulnerability Scanning, Penetration Testing Basics</p>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fas fa-user-shield skill-icon"></i>
-                        <h3>Fraud & Phishing</h3>
-                        <p>Phishing Detection & Prevention, Online Fraud Prevention, Identity Protection</p>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fas fa-network-wired skill-icon"></i>
-                        <h3>Networking & Tools</h3>
-                        <p>Nmap, Wireshark, Network Scanning, TCP/IP, Firewalls, VPNs</p>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fas fa-laptop-code skill-icon"></i>
-                        <h3>Systems & OS</h3>
-                        <p>Kali Linux, Fedora, Linux Server, Windows, Windows Server, Virtual Machines (VMware/VirtualBox)</p>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fas fa-code skill-icon"></i>
-                        <h3>Programming</h3>
-                        <p>Python, Bash, Powershell, Command-Line</p>
+        <!-- EXPERIENCE SECTION -->
+        <section id="experience" class="tab-content">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>System Security Analyst</h3>
+                        <h4>Raechal Enterprises Pvt. Ltd. <span class="date">Oct 2025 - Present | Kathmandu, Nepal (On-site)</span></h4>
+                        <ul>
+                            <li>Deploy, configure, and support Splashtop for remote access and endpoint support.</li>
+                            <li>Manage software deployment, patch management, and endpoint administration using PDQ Deploy and PDQ Inventory.</li>
+                            <li>Monitor client infrastructure, logs, and alerts using Motadata.</li>
+                            <li>Assist in identity and access management (IAM) operations using IBM Verify.</li>
+                            <li>Troubleshoot client issues related to endpoint management, remote access, authentication, and monitoring systems.</li>
+                            <li>Coordinate with client IT teams for deployment, maintenance, and issue resolution.</li>
+                            <li>Prepare technical documentation, system reports, and support records.</li>
+                            <li>Provide technical support and basic security recommendations to clients.</li>
+                        </ul>
                     </div>
                 </div>
-            </section>
-
-            <!-- EDUCATION SECTION -->
-            <section id="education" class="tab-content">
-                <h2 class="section-title">Education & Languages</h2>
-                <div class="education-cards">
-                    <div class="edu-card">
-                        <h3>B.Sc. CSIT (Computer Science & Information Technology)</h3>
-                        <p class="institution">Birendra Memorial College, Dharan</p>
-                        <p class="date">Present</p>
-                    </div>
-                    <div class="edu-card">
-                        <h3>10+2 (Higher Secondary)</h3>
-                        <p class="institution">Bishnu Memorial Secondary School, Dharan</p>
-                        <p class="date">July 2022</p>
-                    </div>
-                    <div class="edu-card">
-                        <h3>SLC — Grade 10</h3>
-                        <p class="institution">Bishnu Memorial Secondary School, Dharan</p>
-                        <p class="date">March 2020</p>
-                    </div>
-                </div>
-
-                <h3 class="subsection-title">Languages</h3>
-                <div class="languages-flex">
-                    <span class="lang-badge">Nepali (Fluent)</span>
-                    <span class="lang-badge">English (Advanced)</span>
-                    <span class="lang-badge">Hindi (Fluent)</span>
-                </div>
-            </section>
-
-            <!-- CERTIFICATIONS SECTION -->
-            <section id="certifications" class="tab-content">
-                <h2 class="section-title">Certifications</h2>
-                <div class="cert-grid">
-                    <div class="cert-item">
-                        <h4>Certified Online Fraud Prevention Specialist (COFPS)</h4>
-                        <p>Hack & Fix • May 2026</p>
-                    </div>
-                    <div class="cert-item">
-                        <h4>Cyber Security 101 Certificate</h4>
-                        <p>TryHackMe • May 2026</p>
-                    </div>
-                    <div class="cert-item">
-                        <h4>Verify (SaaS): User Introduction</h4>
-                        <p>IBM • March 2026</p>
-                    </div>
-                    <div class="cert-item">
-                        <h4>Instana Intermediate</h4>
-                        <p>IBM • Jan 2026</p>
-                    </div>
-                    <div class="cert-item">
-                        <h4>Instana Sales Foundation</h4>
-                        <p>IBM • Jan 2026</p>
-                    </div>
-                    <div class="cert-item">
-                        <h4>Verify Identity Protection Technical Sales Intermediate</h4>
-                        <p>IBM • Jan 2026</p>
-                    </div>
-                    <div class="cert-item">
-                        <h4>Verify Identity Protection Sales Foundation</h4>
-                        <p>IBM • Jan 2026</p>
-                    </div>
-                    <div class="cert-item">
-                        <h4>Certified Threat Intelligence & Governance Analyst (CTIGA)</h4>
-                        <p>Red TeamLeaders • Jan 2026</p>
-                    </div>
-                    <div class="cert-item">
-                        <h4>Cybersecurity Career Starter Certification (CCSC)</h4>
-                        <p>Hack & Fix • Dec 2025</p>
-                    </div>
-                    <div class="cert-item">
-                        <h4>Certified Phishing Prevention Specialist (CPPS)</h4>
-                        <p>Hack & Fix • Dec 2025</p>
-                    </div>
-                    <div class="cert-item">
-                        <h4>Certified Cybersecurity Educator Professional (CCEP)</h4>
-                        <p>Red TeamLeaders • Nov 2025</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- CONTACT SECTION -->
-            <section id="contact" class="tab-content">
-                <h2 class="section-title">Contact Me</h2>
-                <p class="contact-intro">I am open to new opportunities, collaborations, and security consulting. Reach out through any of the channels below.</p>
                 
-                <div class="contact-page-grid">
-                    <a href="tel:00977-9862232586" class="contact-page-card">
-                        <div class="contact-icon-wrap">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <h3>Phone</h3>
-                        <p>00977 9862232586</p>
-                        <span class="contact-action">Call Now</span>
-                    </a>
-                    
-                    <a href="/cdn-cgi/l/email-protection#98f4edf1ebf0f6f1eaf9edf4f9a0aed8fff5f9f1f4b6fbf7f5" class="contact-page-card">
-                        <div class="contact-icon-wrap">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <h3>Email</h3>
-                        <p><span class="__cf_email__" data-cfemail="aec2dbc7ddc6c0c7dccfdbc2cf9698eec9c3cfc7c280cdc1c3">[email&#160;protected]</span></p>
-                        <span class="contact-action">Send Email</span>
-                    </a>
-                    
-                    <a href="https://github.com/LUCS-86" target="_blank" rel="noopener noreferrer" class="contact-page-card">
-                        <div class="contact-icon-wrap">
-                            <i class="fab fa-github"></i>
-                        </div>
-                        <h3>GitHub</h3>
-                        <p>github.com/LUCS-86</p>
-                        <span class="contact-action">View Profile</span>
-                    </a>
-                    
-                    <a href="https://www.linkedin.com/in/luish-niraula-493627275/" target="_blank" rel="noopener noreferrer" class="contact-page-card">
-                        <div class="contact-icon-wrap">
-                            <i class="fab fa-linkedin-in"></i>
-                        </div>
-                        <h3>LinkedIn</h3>
-                        <p>Luish Niraula</p>
-                        <span class="contact-action">Connect</span>
-                    </a>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Independent Cyber Lab Practitioner</h3>
+                        <h4>Self-Directed Research <span class="date">Ongoing | Remote</span></h4>
+                        <ul>
+                            <li>Built and managed multi-OS virtual lab environments (Windows & Kali Linux) for offensive security training.</li>
+                            <li>Pursuing structured learning paths on TryHackMe and HackTheBox, earning platform-recognized credentials.</li>
+                            <li>Executed hands-on exercises in reconnaissance, port scanning, exploitation, and post-exploitation techniques.</li>
+                            <li>Studied and practiced phishing analysis, OSINT gathering, and fraud detection methodologies.</li>
+                        </ul>
+                    </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="contact-footer-note">
-                    <p><i class="fas fa-paper-plane"></i> Feel free to reach out for collaborations, security consultations, or just to say hello!</p>
+        <!-- SKILLS SECTION -->
+        <section id="skills" class="tab-content">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fas fa-shield-alt skill-icon"></i>
+                    <h3>Security Platforms</h3>
+                    <p>TryHackMe, HackTheBox, IBM QRadar (Instana), Splashtop, PDQ, IBM Verify</p>
                 </div>
-            </section>
-        </div>
-        
-        <!-- Slide Controls -->
-        <button class="slide-btn prev-btn" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
-        <button class="slide-btn next-btn" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
-        
-        <div class="slide-dots">
-            <span class="dot active" data-index="0"></span>
-            <span class="dot" data-index="1"></span>
-            <span class="dot" data-index="2"></span>
-            <span class="dot" data-index="3"></span>
-            <span class="dot" data-index="4"></span>
-            <span class="dot" data-index="5"></span>
-        </div>
+                <div class="skill-card">
+                    <i class="fas fa-user-secret skill-icon"></i>
+                    <h3>Offensive Security</h3>
+                    <p>Reconnaissance, Vulnerability Scanning, Penetration Testing Basics</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-user-shield skill-icon"></i>
+                    <h3>Fraud & Phishing</h3>
+                    <p>Phishing Detection & Prevention, Online Fraud Prevention, Identity Protection</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-network-wired skill-icon"></i>
+                    <h3>Networking & Tools</h3>
+                    <p>Nmap, Wireshark, Network Scanning, TCP/IP, Firewalls, VPNs</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-laptop-code skill-icon"></i>
+                    <h3>Systems & OS</h3>
+                    <p>Kali Linux, Fedora, Linux Server, Windows, Windows Server, Virtual Machines (VMware/VirtualBox)</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-code skill-icon"></i>
+                    <h3>Programming</h3>
+                    <p>Python, Bash, Powershell, Command-Line</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDUCATION SECTION -->
+        <section id="education" class="tab-content">
+            <h2 class="section-title">Education & Languages</h2>
+            <div class="education-cards">
+                <div class="edu-card">
+                    <h3>B.Sc. CSIT (Computer Science & Information Technology)</h3>
+                    <p class="institution">Birendra Memorial College, Dharan</p>
+                    <p class="date">Present</p>
+                </div>
+                <div class="edu-card">
+                    <h3>10+2 (Higher Secondary)</h3>
+                    <p class="institution">Bishnu Memorial Secondary School, Dharan</p>
+                    <p class="date">July 2022</p>
+                </div>
+                <div class="edu-card">
+                    <h3>SLC — Grade 10</h3>
+                    <p class="institution">Bishnu Memorial Secondary School, Dharan</p>
+                    <p class="date">March 2020</p>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Languages</h3>
+            <div class="languages-flex">
+                <span class="lang-badge">Nepali (Fluent)</span>
+                <span class="lang-badge">English (Advanced)</span>
+                <span class="lang-badge">Hindi (Fluent)</span>
+            </div>
+        </section>
+
+        <!-- CERTIFICATIONS SECTION -->
+        <section id="certifications" class="tab-content">
+            <h2 class="section-title">Certifications</h2>
+            <div class="cert-grid">
+                <div class="cert-item">
+                    <h4>Certified Online Fraud Prevention Specialist (COFPS)</h4>
+                    <p>Hack & Fix • May 2026</p>
+                </div>
+                <div class="cert-item">
+                    <h4>Cyber Security 101 Certificate</h4>
+                    <p>TryHackMe • May 2026</p>
+                </div>
+                <div class="cert-item">
+                    <h4>Verify (SaaS): User Introduction</h4>
+                    <p>IBM • March 2026</p>
+                </div>
+                <div class="cert-item">
+                    <h4>Instana Intermediate</h4>
+                    <p>IBM • Jan 2026</p>
+                </div>
+                <div class="cert-item">
+                    <h4>Instana Sales Foundation</h4>
+                    <p>IBM • Jan 2026</p>
+                </div>
+                <div class="cert-item">
+                    <h4>Verify Identity Protection Technical Sales Intermediate</h4>
+                    <p>IBM • Jan 2026</p>
+                </div>
+                <div class="cert-item">
+                    <h4>Verify Identity Protection Sales Foundation</h4>
+                    <p>IBM • Jan 2026</p>
+                </div>
+                <div class="cert-item">
+                    <h4>Certified Threat Intelligence & Governance Analyst (CTIGA)</h4>
+                    <p>Red TeamLeaders • Jan 2026</p>
+                </div>
+                <div class="cert-item">
+                    <h4>Cybersecurity Career Starter Certification (CCSC)</h4>
+                    <p>Hack & Fix • Dec 2025</p>
+                </div>
+                <div class="cert-item">
+                    <h4>Certified Phishing Prevention Specialist (CPPS)</h4>
+                    <p>Hack & Fix • Dec 2025</p>
+                </div>
+                <div class="cert-item">
+                    <h4>Certified Cybersecurity Educator Professional (CCEP)</h4>
+                    <p>Red TeamLeaders • Nov 2025</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="tab-content">
+            <h2 class="section-title">Contact Me</h2>
+            <p class="contact-intro">I am open to new opportunities, collaborations, and security consulting. Reach out through any of the channels below.</p>
+            
+            <div class="contact-page-grid">
+                <a href="tel:00977-9862232586" class="contact-page-card">
+                    <div class="contact-icon-wrap">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Phone</h3>
+                    <p>00977 9862232586</p>
+                    <span class="contact-action">Call Now</span>
+                </a>
+                
+                <a href="/cdn-cgi/l/email-protection#89e5fce0fae1e7e0fbe8fce5e8b1bfc9eee4e8e0e5a7eae6e4" class="contact-page-card">
+                    <div class="contact-icon-wrap">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email</h3>
+                    <p><span class="__cf_email__" data-cfemail="f79b829e849f999e8596829b96cfc1b7909a969e9bd994989a">[email&#160;protected]</span></p>
+                    <span class="contact-action">Send Email</span>
+                </a>
+                
+                <a href="https://github.com/LUCS-86" target="_blank" rel="noopener noreferrer" class="contact-page-card">
+                    <div class="contact-icon-wrap">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <h3>GitHub</h3>
+                    <p>github.com/LUCS-86</p>
+                    <span class="contact-action">View Profile</span>
+                </a>
+                
+                <a href="https://www.linkedin.com/in/luish-niraula-493627275/" target="_blank" rel="noopener noreferrer" class="contact-page-card">
+                    <div class="contact-icon-wrap">
+                        <i class="fab fa-linkedin-in"></i>
+                    </div>
+                    <h3>LinkedIn</h3>
+                    <p>Luish Niraula</p>
+                    <span class="contact-action">Connect</span>
+                </a>
+            </div>
+
+            <div class="contact-footer-note">
+                <p><i class="fas fa-paper-plane"></i> Feel free to reach out for collaborations, security consultations, or just to say hello!</p>
+            </div>
+        </section>
     </main>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a0a23c32eaf4b01a',t:'MTc4MTE5Nzg4OA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a0a2512c68399e80',t:'MTc4MTE5ODc0Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
