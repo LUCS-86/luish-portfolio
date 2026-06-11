@@ -1,22 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Tab Navigation ---
-    const tabLinks = document.querySelectorAll('.tab-link');
-    const tabContents = document.querySelectorAll('.tab-content');
-
-    tabLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            tabLinks.forEach(btn => btn.classList.remove('active'));
-            tabContents.forEach(content => content.classList.remove('active'));
-
-            link.classList.add('active');
-            const targetId = link.getAttribute('data-tab');
-            document.getElementById(targetId).classList.add('active');
-
-            // Smooth scroll to top of content when switching tabs
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    });
-
     // --- Theme Toggle ---
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = themeToggle.querySelector('i');
@@ -42,4 +24,43 @@ document.addEventListener('DOMContentLoaded', () => {
         const current = html.getAttribute('data-theme') || 'light';
         setTheme(current === 'dark' ? 'light' : 'dark');
     });
+
+    // --- Scroll-based Tab Highlighting & Click-to-Scroll ---
+    const tabLinks = document.querySelectorAll('.tab-link');
+    const sections = document.querySelectorAll('.tab-content');
+
+    // Click-to-scroll functionality
+    tabLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            const targetId = link.getAttribute('data-tab');
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
+    // IntersectionObserver for scroll-based tab highlighting
+    const observerOptions = {
+        root: null,
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                tabLinks.forEach(link => {
+                    if (link.getAttribute('data-tab') === id) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => observer.observe(section));
 });
