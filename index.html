@@ -5,80 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | Luish</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav id="navbar">
-        <div class="logo">LUISH<span>.</span></div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <div class="burger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
+    <nav>
+        <div class="container">
+            <h1 class="logo">LUISH<span>.</span></h1>
+            <ul class="nav-links">
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </div>
     </nav>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Hi, I'm <span class="highlight">Luish</span></h1>
-            <p>Full Stack Developer & Creative Solutions Architect</p>
+    <header class="hero">
+        <div class="container">
+            <h2>Hi, I'm Luish</h2>
+            <p class="tagline">Networking Enthusiast & Web Developer</p>
             <a href="#projects" class="btn">View My Work</a>
         </div>
-    </section>
+    </header>
 
-    <section id="about" class="container">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-grid">
-            <div class="about-text">
-                <p>I specialize in building digital experiences that combine functional code with intuitive design. With a focus on performance and scalability, I help turn complex problems into elegant software solutions.</p>
-                <div class="skills">
-                    <span class="skill-badge">JavaScript</span>
-                    <span class="skill-badge">React</span>
-                    <span class="skill-badge">Node.js</span>
-                    <span class="skill-badge">Python</span>
-                    <span class="skill-badge">UI/UX Design</span>
-                </div>
+    <section id="skills" class="container">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Networking</h3>
+                <p>TCP/IP, Ports, DNS, and Router Configuration</p>
+            </div>
+            <div class="skill-card">
+                <h3>Web Dev</h3>
+                <p>HTML5, CSS3, Modern JavaScript, and Responsive Design</p>
+            </div>
+            <div class="skill-card">
+                <h3>Architecture</h3>
+                <p>Server Management, Deployment, and Infrastructure</p>
             </div>
         </div>
     </section>
 
     <section id="projects" class="container">
-        <h2 class="section-title">Selected Projects</h2>
+        <h2 class="section-title">Featured Projects</h2>
         <div class="project-grid">
-            <!-- Project 1 -->
             <div class="project-card">
-                <div class="project-info">
-                    <h3>E-Commerce Engine</h3>
-                    <p>A scalable backend architecture for high-traffic retail apps.</p>
-                    <a href="#" class="project-link">Source Code →</a>
-                </div>
+                <h3>Network Analysis Tool</h3>
+                <p>A utility for monitoring port traffic and protocol efficiency.</p>
             </div>
-            <!-- Project 2 -->
             <div class="project-card">
-                <div class="project-info">
-                    <h3>Data Dashboard</h3>
-                    <p>Real-time analytics visualization using D3.js and WebSockets.</p>
-                    <a href="#" class="project-link">Live Demo →</a>
-                </div>
+                <h3>Personal Portfolio</h3>
+                <p>Custom-built responsive site optimized for performance.</p>
             </div>
         </div>
     </section>
 
     <footer id="contact">
-        <h2>Get In Touch</h2>
-        <p>I'm always open to new opportunities and collaborations.</p>
-        <div class="social-links">
-            <a href="#"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="mailto:hello@luish.com.np"><i class="fas fa-envelope"></i></a>
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <p>Ready to start a conversation?</p>
+            <a href="mailto:your-email@example.com" class="btn">Send Email</a>
         </div>
-        <p class="copyright">&copy; 2026 Luish. All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>
