@@ -1,87 +1,45 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Tab Navigation ---
     const tabLinks = document.querySelectorAll('.tab-link');
-    const dots = document.querySelectorAll('.dot');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
-    const wrapper = document.querySelector('.slider-wrapper');
-    
-    let currentIndex = 0;
-    const totalSlides = tabLinks.length;
+    const tabContents = document.querySelectorAll('.tab-content');
 
-    function goToSlide(index) {
-        // Wrap around
-        if (index < 0) index = totalSlides - 1;
-        if (index >= totalSlides) index = 0;
-        
-        currentIndex = index;
-        
-        // Move slider
-        wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
-        
-        // Update tabs
-        tabLinks.forEach((btn, i) => {
-            btn.classList.toggle('active', i === currentIndex);
+    tabLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            tabLinks.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            link.classList.add('active');
+            const targetId = link.getAttribute('data-tab');
+            document.getElementById(targetId).classList.add('active');
+
+            // Smooth scroll to top of content when switching tabs
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-        
-        // Update dots
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === currentIndex);
-        });
-        
-        // Scroll to top of content smoothly
-        const headerHeight = document.querySelector('.header').offsetHeight;
-        window.scrollTo({
-            top: document.querySelector('.main-content').offsetTop - headerHeight - 10,
-            behavior: 'smooth'
-        });
+    });
+
+    // --- Theme Toggle ---
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
+    const html = document.documentElement;
+
+    function setTheme(theme) {
+        html.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
     }
 
-    // Tab clicks
-    tabLinks.forEach((link, index) => {
-        link.addEventListener('click', () => goToSlide(index));
-    });
-
-    // Dot clicks
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => goToSlide(index));
-    });
-
-    // Arrow buttons
-    prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
-    nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
-
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-            e.preventDefault();
-            goToSlide(currentIndex - 1);
-        }
-        if (e.key === 'ArrowRight') {
-            e.preventDefault();
-            goToSlide(currentIndex + 1);
-        }
-    });
-    
-    // Touch swipe support
-    let touchStartX = 0;
-    let touchEndX = 0;
-    
-    wrapper.addEventListener('touchstart', e => {
-        touchStartX = e.changedTouches[0].screenX;
-    }, {passive: true});
-    
-    wrapper.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    }, {passive: true});
-    
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        if (touchEndX < touchStartX - swipeThreshold) {
-            goToSlide(currentIndex + 1);
-        }
-        if (touchEndX > touchStartX + swipeThreshold) {
-            goToSlide(currentIndex - 1);
-        }
+    // Load saved theme or detect system preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        setTheme(savedTheme);
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        setTheme('dark');
+    } else {
+        setTheme('light');
     }
+
+    themeToggle.addEventListener('click', () => {
+        const current = html.getAttribute('data-theme') || 'light';
+        setTheme(current === 'dark' ? 'light' : 'dark');
+    });
 });
